@@ -2,13 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>옷 갈아입히기 게임</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>옷 갈아입히기 게임</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
+  <header id="header">
+    <h1>옷 갈아입히기 게임</h1>
+  </header>
+  <section id="playArea">
+    <div class="doll">
+      <div class="dollHead">
+        <span class="hair"></span>
+      </div>
+      <div class="dollBody">
+        <span class="clothes"></span>
+        <span class="accessory"></span>
+      </div>
+      <div class="dollPet"></div>
+    </div>
+  </section>
 
+  <section id="itemArea">
+    <ul class="tab">
+      <li class="on"><a href="#;">인형<span class="blind">현재 페이지</span></a></li>
+      <li><a href="#;">옷</a></li>
+      <li><a href="#;">헤어</a></li>
+      <li><a href="#;">악세사리</a></li>
+      <li><a href="#;">동물</a></li>
+    </ul>
+    <div class="tabCont">
+      <ul class="itemList">
+        <li><button><img src="" alt=""></button></li>
+      </ul>
+    </div>
+  </section>
 </body>
 
 </html>
