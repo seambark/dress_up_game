@@ -10,36 +10,51 @@
 </head>
 
 <body>
-  <header id="header">
-    <h1>옷 갈아입히기 게임</h1>
-  </header>
-  <section id="playArea">
-    <div class="doll">
-      <div class="dollHead">
-        <span class="hair"></span>
-      </div>
-      <div class="dollBody">
-        <span class="clothes"></span>
-        <span class="accessory"></span>
-      </div>
-      <div class="dollPet"></div>
-    </div>
-  </section>
+  <div class="wrap">
+    <header id="header">
+      <h1><span>베베</span>의 옷장</h1>
+    </header>
+    <div class="content">
+      <section id="playArea">
+        <div class="doll">
+          <div class="dollHead">
+            <span class="hair"></span>
+          </div>
+          <div class="dollBody">
+            <span class="clothes"></span>
+            <span class="accessory"></span>
+          </div>
+          <div class="dollPet"></div>
+        </div>
+      </section>
 
-  <section id="itemArea">
-    <ul class="tab">
-      <li class="on"><a href="#;">인형<span class="blind">현재 페이지</span></a></li>
-      <li><a href="#;">옷</a></li>
-      <li><a href="#;">헤어</a></li>
-      <li><a href="#;">악세사리</a></li>
-      <li><a href="#;">동물</a></li>
-    </ul>
-    <div class="tabCont">
-      <ul class="itemList">
-        <li><button><img src="" alt=""></button></li>
-      </ul>
+      <section id="itemArea">
+        <ul class="tab">
+          <li class="on"><a href="#;">인형<span class="blind">현재 페이지</span></a></li>
+          <li><a href="#;">옷</a></li>
+          <li><a href="#;">헤어</a></li>
+          <li><a href="#;">악세사리</a></li>
+          <li><a href="#;">동물</a></li>
+        </ul>
+        <div class="tabCont">
+          <ul class="itemList">
+            <li>
+              <button class="card">
+                <img src="/assets/images/doll/doll_01.png" alt="">
+                <span class="nameTag">베리</span>
+              </button>
+            </li>
+            <li>
+              <button class="card">
+                <img src="/assets/images/doll/doll_02.png" alt="">
+                <span class="nameTag">베시</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
-  </section>
+  </div>
 </body>
 
 </html>
