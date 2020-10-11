@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>옷 갈아입히기 게임</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/items.js" defer></script>
   <script src="assets/js/script.js" defer></script>
 </head>
 
@@ -30,27 +31,13 @@
 
       <section id="itemArea">
         <ul class="tab">
-          <li class="on"><a href="#;">인형<span class="blind">현재 페이지</span></a></li>
-          <li><a href="#;">옷</a></li>
-          <li><a href="#;">헤어</a></li>
-          <li><a href="#;">악세사리</a></li>
-          <li><a href="#;">동물</a></li>
+          <li class="on"><a id="tabDoll" href="#;">인형<span class="blind">현재 페이지</span></a></li>
+          <li><a id="tabClothes" href="#;">옷</a></li>
+          <li><a id="tabHair" href="#;">헤어</a></li>
+          <li><a id="tabAccessory" href="#;">악세사리</a></li>
+          <li><a id="tabPet" href="#;">동물</a></li>
         </ul>
         <div class="tabCont">
-          <ul class="itemList">
-            <li>
-              <button class="card">
-                <img src="/assets/images/doll/doll_01.png" alt="">
-                <span class="nameTag">베리</span>
-              </button>
-            </li>
-            <li>
-              <button class="card">
-                <img src="/assets/images/doll/doll_02.png" alt="">
-                <span class="nameTag">베시</span>
-              </button>
-            </li>
-          </ul>
         </div>
       </section>
     </div>
