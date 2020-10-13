@@ -1,20 +1,17 @@
+let dollBody = document.querySelector('.doll');
+let dollHair = document.querySelector('.dollHead .hair');
+let dollClothes = document.querySelector('.dollBody .clothes');
+let dollAccessory = document.querySelector('.dollBody .accessory');
+let dollPet = document.querySelector('.dollPet');
+
 let itemArea = document.querySelector('#itemArea');
 let tab = document.querySelector('.tab');
 let tabLi = document.querySelector('.tab li');
+let tabCont = document.querySelector('.tabCont');
 let tabActive;
-let listActive;
-
-let itemList = document.querySelector('.itemList');
 
 tab.addEventListener('click', onTab);
-// itemList.addEventListener('click', onItem)
-
-function onItem() {
-  let item = e.target;
-  if (item.tagName === 'BUTTON') {
-    item.querySelector('img').getAttribute('src');
-  }
-}
+tabCont.addEventListener('click', onItem)
 
 function tabCheck(active) {
   let creatSpan = document.createElement('span');
@@ -32,21 +29,19 @@ function tabCheck(active) {
 }
 
 function creatitemListItem(type) {
-  let tabCont = document.querySelector('.tabCont');
   let ul = document.createElement('ul');
 
   tabCont.appendChild(ul)
   ul.classList.add('itemList');
 
   ul.classList.add(`tab${type[0].type[0].toUpperCase()}${type[0].type.slice(1)}`);
-  // ul.classList.add(`item${type[0].type[0].toUpperCase()}${type[0].type.slice(1)}`)
 
   for (let i = 0; i < type.length; i++) {
     let creatLi = document.createElement('li');
     ul.appendChild(creatLi);
     creatLi.innerHTML = `
       <button class="item">
-        <img src="${type[i].url}" alt="${type[i].name}">
+        <img src="${type[i].urlThmb}" alt="${type[i].name}">
         <span class="nameTag">${type[i].name}</span>
       </button>
     `
@@ -62,20 +57,13 @@ function dataItemsList() {
 
   let accessory = items.filter(itemsFilter => itemsFilter.type.includes('accessory'))
   creatitemListItem(accessory)
+
+  let hair = items.filter(itemsFilter => itemsFilter.type.includes('hair'))
+  creatitemListItem(hair)
+
+  let pet = items.filter(itemsFilter => itemsFilter.type.includes('pet'))
+  creatitemListItem(pet)
 }
-
-function dataActive(id) {
-  let doll = document.querySelector('.tabDoll')
-  let clothes = document.querySelector('.tabClothes')
-
-  if (id === 'tabDoll') {
-    doll.style.display = 'block'
-  } else if (id === 'tabClothes') {
-    clothes.style.display = 'block'
-  }
-}
-
-dataItemsList()
 
 function onTab(e) {
   let target = e.target;
@@ -95,4 +83,74 @@ function onTab(e) {
   }
 
   dataActive(target.id)
+}
+
+function dataActive(id) {
+  let doll = document.querySelector('.tabDoll')
+  let clothes = document.querySelector('.tabClothes')
+  let hair = document.querySelector('.tabHair')
+  let accessory = document.querySelector('.tabAccessory')
+  let pet = document.querySelector('.tabPet')
+
+  if (id === 'tabDoll') {
+    doll.style.display = 'block'
+  } else if (id === 'tabClothes') {
+    clothes.style.display = 'block'
+  } else if (id === 'tabHair') {
+    hair.style.display = 'block'
+  } else if (id === 'tabAccessory') {
+    accessory.style.display = 'block'
+  } else if (id === 'tabPet') {
+    pet.style.display = 'block'
+  }
+}
+
+dataItemsList()
+
+function creatItemsImg(src) {
+  let creatImgBack = document.createElement('img');
+  let creatImg = document.createElement('img');
+  let srcData = src.querySelector('img').getAttribute('src');
+  let altData = src.querySelector('img').getAttribute('alt')
+  let type = src.parentNode.parentNode
+  let typeClass = type.getAttribute('class')
+
+  let imgBaCK = items.filter(itemsFilter => itemsFilter.urlThmb.includes(srcData))
+
+  creatImg.setAttribute('src', imgBaCK[0].url);
+  creatImg.setAttribute('alt', altData);
+
+  if (typeClass === 'itemList tabDoll') {
+    altData === '베베' && dollBody.classList.remove('type02')
+    altData === '베시' && dollBody.classList.add('type02')
+  } else if (typeClass === 'itemList tabHair') {
+    itemsImgRemove(dollHair)
+    dollHair.appendChild(creatImg)
+
+    if (imgBaCK[0].urlBack) {
+      creatImgBack.setAttribute('src', imgBaCK[0].urlBack)
+      creatImgBack.setAttribute('alt', altData + ' 뒷면')
+      dollHair.appendChild(creatImgBack)
+    }
+  } else if (typeClass === 'itemList tabClothes') {
+    itemsImgRemove(dollClothes)
+    dollClothes.appendChild(creatImg)
+  } else if (typeClass === 'itemList tabAccessory') {
+    itemsImgRemove(dollAccessory)
+    dollAccessory.appendChild(creatImg)
+  } else if (typeClass === 'itemList tabPet') {
+    itemsImgRemove(dollPet)
+    dollPet.appendChild(creatImg)
+  }
+}
+
+function itemsImgRemove(del) {
+  del.innerHTML = ''
+}
+
+function onItem(e) {
+  let item = e.target;
+  if (item.tagName === 'BUTTON') {
+    creatItemsImg(item)
+  }
 }

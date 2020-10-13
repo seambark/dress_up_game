@@ -12,6 +12,9 @@
   font-size: 3rem;
   text-align: center;
 }
+#header h1 span {
+  color: #f8b046;
+}
 
 .content {
   position: relative;
@@ -33,6 +36,7 @@
 }
 #playArea .doll {
   display: inline-block;
+  position: relative;
   width: 230px;
   min-height: 411px;
 }
@@ -42,6 +46,15 @@
   left: 0;
   width: 100%;
 }
+#playArea .doll span {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#playArea .doll span img {
+  display: block;
+  width: 100%;
+}
 
 #playArea .doll .dollHead {
   position: relative;
@@ -49,23 +62,85 @@
   background: url("../images/doll/doll_01.png") no-repeat center top;
   background-size: 100% auto;
 }
+#playArea .doll .dollHead .hair {
+  position: absolute;
+  left: -8px;
+  top: -32px;
+  width: 294px;
+}
+#playArea .doll .dollHead .hair::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 33px;
+  left: 9px;
+  width: 230px;
+  height: 146px;
+  background: url("../images/doll/doll_01.png") no-repeat center top;
+  background-size: 100% auto;
+  z-index: 5;
+}
+#playArea .doll .dollHead .hair img:first-of-type {
+  z-index: 10;
+}
 #playArea .doll .dollBody {
   position: relative;
   height: 300px;
   background: url("../images/doll/doll_01.png") no-repeat center -121px;
   background-size: 100% auto;
+  z-index: 5;
 }
+#playArea .doll.type02 .dollHead,
+#playArea .doll.type02 .dollBody,
+#playArea .doll.type02 .dollHead .hair::before {
+  background-image: url("../images/doll/doll_02.png");
+}
+#playArea .doll.type02 .dollHead .hair img {
+  transform: rotate(-14deg);
+  top: -4px;
+  left: -16px;
+}
+
 #playArea .doll .dollBody .accessory {
   position: absolute;
-  top: 62px;
-  right: -40px;
+  top: 98px;
+  right: -30px;
   width: 120px;
   height: 230px;
+}
+#playArea .doll .dollBody .accessory::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 30px;
+  width: 30px;
+  height: 35px;
+  border-radius: 50%;
+  background: url("../images/doll/doll_01.png") no-repeat right -214px;
+  background-size: 230px auto;
+  z-index: 5;
 }
 
 #playArea .doll .dollBody .accessory img {
   width: auto;
   max-height: 100%;
+  z-index: 10;
+}
+#playArea .doll .dollBody .accessory img:last-child {
+  z-index: 0;
+}
+
+#playArea .doll .dollPet {
+  position: absolute;
+  left: -100px;
+  bottom: 0;
+  height: 130px;
+  z-index: 10;
+}
+
+#playArea .doll .dollPet img {
+  width: auto;
+  height: 100%;
 }
 
 #itemArea {
@@ -101,7 +176,8 @@
   writing-mode: vertical-rl;
 }
 .tab li.on a,
-.tab li a:hover {
+.tab li a:hover,
+.tab li a:focus {
   border-radius: 5px 0 0 5px;
   background-color: #f8b046;
   color: #fff;
@@ -115,21 +191,31 @@
   text-indent: -99999px;
 }
 .tabCont {
+  /* display: none; */
+  overflow-y: auto;
   background-color: #f8b046;
   height: 100%;
 }
+.tabCont.on {
+  display: block;
+}
 
 .itemList {
+  display: none;
   padding: 20px 10px;
   font-size: 0;
 }
+.itemList:first-of-type {
+  display: block;
+}
+
 .itemList li {
   display: inline-block;
   width: 50%;
   vertical-align: top;
 }
 
-.itemList .card {
+.itemList .item {
   overflow: hidden;
   position: relative;
   width: 100px;
@@ -137,10 +223,11 @@
   background-color: transparent;
   cursor: pointer;
 }
-.itemList .card img {
-  height: 100%;
+.itemList .item img {
+  height: 80%;
+  pointer-events: none;
 }
-.itemList .card .nameTag {
+.itemList .item .nameTag {
   display: block;
   position: absolute;
   left: 0;
@@ -148,8 +235,10 @@
   height: 0;
   width: 100%;
   color: #fff;
+  pointer-events: none;
 }
-.itemList .card:hover .nameTag {
+.itemList .item:hover .nameTag,
+.itemList .item:focus .nameTag {
   height: 20px;
   line-height: 20px;
   padding: 2px;
