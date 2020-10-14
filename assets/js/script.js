@@ -1,8 +1,10 @@
+let playArea = document.querySelector('#playArea');
 let dollBody = document.querySelector('.doll');
 let dollHair = document.querySelector('.dollHead .hair');
 let dollClothes = document.querySelector('.dollBody .clothes');
 let dollAccessory = document.querySelector('.dollBody .accessory');
 let dollPet = document.querySelector('.dollPet');
+let delBtn = document.querySelector('.delBtn')
 
 let itemArea = document.querySelector('#itemArea');
 let tab = document.querySelector('.tab');
@@ -13,10 +15,13 @@ let tabActive;
 tab.addEventListener('click', onTab);
 tabCont.addEventListener('click', onItem)
 
+dollBody.addEventListener('dblclick', onUndressing);
+playArea.addEventListener('click', onDelBtn);
+
 function tabCheck(active) {
   let creatSpan = document.createElement('span');
 
-  tabActive === undefined && tabLi.querySelector('a span').remove()
+  tabActive === undefined && tabLi.querySelector('a span').remove();
 
   if (tabActive) {
     let check = tabActive.querySelector('span');
@@ -31,7 +36,7 @@ function tabCheck(active) {
 function creatitemListItem(type) {
   let ul = document.createElement('ul');
 
-  tabCont.appendChild(ul)
+  tabCont.appendChild(ul);
   ul.classList.add('itemList');
 
   ul.classList.add(`tab${type[0].type[0].toUpperCase()}${type[0].type.slice(1)}`);
@@ -49,20 +54,20 @@ function creatitemListItem(type) {
 }
 
 function dataItemsList() {
-  let doll = items.filter(itemsFilter => itemsFilter.type.includes('doll'))
-  creatitemListItem(doll)
+  let doll = items.filter(itemsFilter => itemsFilter.type.includes('doll'));
+  creatitemListItem(doll);
 
-  let clothes = items.filter(itemsFilter => itemsFilter.type.includes('clothes'))
-  creatitemListItem(clothes)
+  let clothes = items.filter(itemsFilter => itemsFilter.type.includes('clothes'));
+  creatitemListItem(clothes);
 
-  let accessory = items.filter(itemsFilter => itemsFilter.type.includes('accessory'))
-  creatitemListItem(accessory)
+  let accessory = items.filter(itemsFilter => itemsFilter.type.includes('accessory'));
+  creatitemListItem(accessory);
 
-  let hair = items.filter(itemsFilter => itemsFilter.type.includes('hair'))
-  creatitemListItem(hair)
+  let hair = items.filter(itemsFilter => itemsFilter.type.includes('hair'));
+  creatitemListItem(hair);
 
-  let pet = items.filter(itemsFilter => itemsFilter.type.includes('pet'))
-  creatitemListItem(pet)
+  let pet = items.filter(itemsFilter => itemsFilter.type.includes('pet'));
+  creatitemListItem(pet);
 }
 
 function onTab(e) {
@@ -73,35 +78,35 @@ function onTab(e) {
   if (target.tagName === 'A') {
     tabActive && tabActive.parentNode.classList.remove('on');
     target.parentNode.classList.add('on');
-    tabCheck(target)
+    tabCheck(target);
     tabActive = target;
   }
 
-  let listCheck = document.querySelectorAll('.itemList')
+  let listCheck = document.querySelectorAll('.itemList');
   for (let i = 0; i < listCheck.length; i++) {
-    listCheck[i].style.display = 'none'
+    listCheck[i].style.display = 'none';
   }
 
   dataActive(target.id)
 }
 
 function dataActive(id) {
-  let doll = document.querySelector('.tabDoll')
-  let clothes = document.querySelector('.tabClothes')
-  let hair = document.querySelector('.tabHair')
-  let accessory = document.querySelector('.tabAccessory')
-  let pet = document.querySelector('.tabPet')
+  let doll = document.querySelector('.tabDoll');
+  let clothes = document.querySelector('.tabClothes');
+  let hair = document.querySelector('.tabHair');
+  let accessory = document.querySelector('.tabAccessory');
+  let pet = document.querySelector('.tabPet');
 
   if (id === 'tabDoll') {
-    doll.style.display = 'block'
+    doll.style.display = 'block';
   } else if (id === 'tabClothes') {
-    clothes.style.display = 'block'
+    clothes.style.display = 'block';
   } else if (id === 'tabHair') {
-    hair.style.display = 'block'
+    hair.style.display = 'block';
   } else if (id === 'tabAccessory') {
-    accessory.style.display = 'block'
+    accessory.style.display = 'block';
   } else if (id === 'tabPet') {
-    pet.style.display = 'block'
+    pet.style.display = 'block';
   }
 }
 
@@ -111,36 +116,36 @@ function creatItemsImg(src) {
   let creatImgBack = document.createElement('img');
   let creatImg = document.createElement('img');
   let srcData = src.querySelector('img').getAttribute('src');
-  let altData = src.querySelector('img').getAttribute('alt')
-  let type = src.parentNode.parentNode
-  let typeClass = type.getAttribute('class')
+  let altData = src.querySelector('img').getAttribute('alt');
+  let type = src.parentNode.parentNode;
+  let typeClass = type.getAttribute('class');
 
-  let imgBaCK = items.filter(itemsFilter => itemsFilter.urlThmb.includes(srcData))
+  let imgBaCK = items.filter(itemsFilter => itemsFilter.urlThmb.includes(srcData));
 
   creatImg.setAttribute('src', imgBaCK[0].url);
   creatImg.setAttribute('alt', altData);
 
   if (typeClass === 'itemList tabDoll') {
-    altData === '베베' && dollBody.classList.remove('type02')
-    altData === '베시' && dollBody.classList.add('type02')
+    altData === '베베' && dollBody.classList.remove('type02');
+    altData === '베시' && dollBody.classList.add('type02');
   } else if (typeClass === 'itemList tabHair') {
-    itemsImgRemove(dollHair)
-    dollHair.appendChild(creatImg)
+    itemsImgRemove(dollHair);
+    dollHair.appendChild(creatImg);
 
     if (imgBaCK[0].urlBack) {
-      creatImgBack.setAttribute('src', imgBaCK[0].urlBack)
-      creatImgBack.setAttribute('alt', altData + ' 뒷면')
-      dollHair.appendChild(creatImgBack)
+      creatImgBack.setAttribute('src', imgBaCK[0].urlBack);
+      creatImgBack.setAttribute('alt', altData + ' 뒷면');
+      dollHair.appendChild(creatImgBack);
     }
   } else if (typeClass === 'itemList tabClothes') {
-    itemsImgRemove(dollClothes)
-    dollClothes.appendChild(creatImg)
+    itemsImgRemove(dollClothes);
+    dollClothes.appendChild(creatImg);
   } else if (typeClass === 'itemList tabAccessory') {
-    itemsImgRemove(dollAccessory)
-    dollAccessory.appendChild(creatImg)
+    itemsImgRemove(dollAccessory);
+    dollAccessory.appendChild(creatImg);
   } else if (typeClass === 'itemList tabPet') {
-    itemsImgRemove(dollPet)
-    dollPet.appendChild(creatImg)
+    itemsImgRemove(dollPet);
+    dollPet.appendChild(creatImg);
   }
 }
 
@@ -151,6 +156,41 @@ function itemsImgRemove(del) {
 function onItem(e) {
   let item = e.target;
   if (item.tagName === 'BUTTON') {
-    creatItemsImg(item)
+    creatItemsImg(item);
+  }
+
+  if (dollBody.querySelectorAll('img').length && !playArea.querySelector('.delBtn')) {
+    creatDelBtn();
   }
 }
+
+function onUndressing(e) {
+  let target = e.target;
+  if (target.tagName === 'IMG') {
+    itemsImgRemove(target.parentNode);
+  }
+}
+
+function creatDelBtn() {
+  let imgCheck = dollBody.querySelectorAll('img');
+
+  if (imgCheck) {
+    let creatBtn = document.createElement('button');
+
+    creatBtn.setAttribute('class', 'delBtn');
+    playArea.appendChild(creatBtn);
+    creatBtn.innerText = `다시하기`;
+  }
+}
+
+function onDelBtn(e) {
+  if (e.target.tagName === 'BUTTON') {
+    let imgList = dollBody.querySelectorAll('img');
+
+    for (let i = 0; i < imgList.length; i++) {
+      imgList[i].remove();
+    }
+
+  }
+}
+
