@@ -191,6 +191,7 @@ function onDelBtn(e) {
       imgList[i].remove();
     }
 
+    e.target.remove();
   }
 }
 
