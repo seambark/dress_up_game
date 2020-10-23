@@ -303,6 +303,7 @@
   #itemArea {
     position: relative;
     width: 100%;
+    height: auto;
     margin-top: 20px;
     padding: 0;
     border-radius: 0;
@@ -335,22 +336,34 @@
     border-radius: 5px 5px 0 0;
   }
   .tabCont {
+    overflow-y: inherit;
     height: auto;
     border-radius: 0 0 25px 25px;
-    overflow-y: inherit;
   }
   .itemList {
     white-space: nowrap;
   }
   .itemList li {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
   .itemList .item {
     width: 100%;
     height: 100%;
   }
+  .itemList .item:hover .nameTag,
+  .itemList .item:focus .nameTag {
+    height: 18px;
+    font-size: 0.7rem;
+    line-height: 15px;
+  }
 }
-/* 
+
 @media all and (min-width: 360px) and (max-width: 760px) {
-} */
+  #playArea .delBtn {
+    right: 0;
+    bottom: 0;
+    width: 80px;
+    font-size: 0.8rem;
+  }
+}
