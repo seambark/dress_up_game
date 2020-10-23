@@ -275,3 +275,82 @@
     rgba(248, 176, 70, 0.5) 100%
   );
 }
+
+@media all and (max-width: 1000px) {
+  h1 {
+    font-size: 2.3rem;
+  }
+  .wrap {
+    width: 100%;
+    max-width: inherit;
+    padding-top: 20px;
+  }
+  #header {
+    margin-top: 30px;
+  }
+  .content {
+    height: auto;
+  }
+  #playArea {
+    width: 100%;
+    height: auto;
+    padding: inherit;
+    border-radius: 25px;
+  }
+  #playArea .doll {
+    transform: scale(0.7);
+  }
+  #itemArea {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+  }
+  #itemArea .tab {
+    overflow: hidden;
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    font-size: 0;
+  }
+  .tab li {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    vertical-align: top;
+  }
+  .tab li a {
+    padding: 10px 5px;
+    font-size: 1rem;
+    writing-mode: inherit;
+  }
+  .tab li.on a,
+  .tab li a:hover,
+  .tab li a:focus {
+    border-radius: 5px 5px 0 0;
+  }
+  .tabCont {
+    height: auto;
+    border-radius: 0 0 25px 25px;
+    overflow-y: inherit;
+  }
+  .itemList {
+    white-space: nowrap;
+  }
+  .itemList li {
+    width: 100px;
+    height: 100px;
+  }
+  .itemList .item {
+    width: 100%;
+    height: 100%;
+  }
+}
+/* 
+@media all and (min-width: 360px) and (max-width: 760px) {
+} */
