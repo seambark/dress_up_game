@@ -283,6 +283,7 @@
   .wrap {
     width: 100%;
     max-width: inherit;
+    min-width: 360px;
     padding-top: 20px;
   }
   #header {
@@ -366,5 +367,9 @@
     bottom: 0;
     width: 80px;
     font-size: 0.8rem;
+  }
+  .tab li a {
+    padding: 0;
+    line-height: 40px;
   }
 }
